@@ -1,0 +1,15 @@
+name: Build NRO
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: make
+    - name: Save file
+      uses: actions/upload-artifact@v3
+      with:
+        name: gotoviy-fail
+        path: joycon2mouse.nro
